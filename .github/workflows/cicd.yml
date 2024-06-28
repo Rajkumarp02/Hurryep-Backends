@@ -25,6 +25,6 @@ jobs:
         - name: Delete old container
           run: docker rm -f node-app-container  
         - name: Run Docker Container
-          run: docker run -d -p 8000:8000 --name node-app-container -e hurryep/demo_1
+          run: docker run -d -p 8000:8000 --name node-app-container 
 
 
