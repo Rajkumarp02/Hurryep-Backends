@@ -19,7 +19,7 @@ app.use(
   });
 const order = require("./route/orderRoute")
 app.use("/api/v1",order)
-app.get("/gets",()=>{
-  console.log("Hello")
+app.get("/gets",(req,res)=>{
+  res.send("Hello World")
 })
 module.exports = app
