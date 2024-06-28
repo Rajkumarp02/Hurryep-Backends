@@ -22,6 +22,8 @@ jobs:
       steps:
         - name: pull image from docker hub
           run: docker pull hurryep/demo_1:latest
+        - name: Delete old container
+          run: docker rm -f node-app-container  
         - name: Run Docker Container
           run: docker run -d -p 8000:8000 --name node-app-container -e hurryep/demo_1
 
