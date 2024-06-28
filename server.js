@@ -5,6 +5,6 @@ const dotenv = require("dotenv")
 dotenv.config({path: path.join(__dirname,'./config/config.env')})
 
 
-app.listen(process.env.PORT,()=>{
+app.listen(8000,()=>{
     console.log("Server Started")
 })

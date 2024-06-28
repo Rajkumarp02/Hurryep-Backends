@@ -1,0 +1,28 @@
+name: Deploy Node Application
+
+on:
+    push:
+        branches:
+         - msd
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Source
+              uses: action/checkout@v4
+            - name: Login to docker hub
+              run: docker login -u ${{ secrets.Docker_Username }} -p ${{ secrets.Docker_Password }}
+            - name: Build Docker Image
+              run: docker build -t hurryep/demo_1 .
+            - name: Publish Image to docker hub
+              run: docker push hurryep/demo_1:latest 
+    deploy:
+      needs: build
+      runs-on: self-hosted
+      steps:
+        - name: pull image from docker hub
+          run: docker pull hurryep/demo_1:latest
+        - name: Run Docker Container
+          run: docker run -d -p 8000:8000 --name node-app-container -e hurryep/demo_1
+
+
